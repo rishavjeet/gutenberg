@@ -10,7 +10,7 @@ import { __experimentalVStack as VStack } from '@wordpress/components';
 import TypographyElements from './typogrphy-elements';
 import FontFamilies from './font-families';
 import ScreenHeader from './header';
-import TypographyVariations from './variations-typography';
+import Typeset from './typeset';
 
 function ScreenTypography() {
 	return (
@@ -23,11 +23,11 @@ function ScreenTypography() {
 			/>
 			<div className="edit-site-global-styles-screen-typography">
 				<VStack spacing={ 6 }>
+					<Typeset />
 					{ ! window.__experimentalDisableFontLibrary && (
 						<FontFamilies />
 					) }
 					<TypographyElements />
-					<TypographyVariations />
 				</VStack>
 			</div>
 		</>
