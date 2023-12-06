@@ -10,6 +10,7 @@ import { __experimentalVStack as VStack } from '@wordpress/components';
 import TypographyElements from './typogrphy-elements';
 import FontFamilies from './font-families';
 import ScreenHeader from './header';
+import TypographyVariations from './variations-typography';
 
 function ScreenTypography() {
 	return (
@@ -26,6 +27,7 @@ function ScreenTypography() {
 						<FontFamilies />
 					) }
 					<TypographyElements />
+					<TypographyVariations />
 				</VStack>
 			</div>
 		</>
