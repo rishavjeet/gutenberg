@@ -140,6 +140,7 @@ export default function Image( {
 				? select( coreStore ).getMedia( id, { context: 'view' } )
 				: null,
 		[ id, isSingleSelected ]
+	);
 
 	const {
 		canInsertCover,
