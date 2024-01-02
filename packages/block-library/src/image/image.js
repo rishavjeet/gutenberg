@@ -140,32 +140,47 @@ export default function Image( {
 				? select( coreStore ).getMedia( id, { context: 'view' } )
 				: null,
 		[ id, isSingleSelected ]
-	);
-	const { canInsertCover, imageEditing, imageSizes, maxWidth, mediaUpload } =
-		useSelect(
-			( select ) => {
-				const {
-					getBlockRootClientId,
-					getSettings,
-					canInsertBlockType,
-				} = select( blockEditorStore );
 
-				const rootClientId = getBlockRootClientId( clientId );
-				const settings = getSettings();
+	const {
+		canInsertCover,
+		imageEditing,
+		imageSizes,
+		maxWidth,
+		mediaUpload,
+		multiImageSelection,
+	} = useSelect(
+		( select ) => {
+			const {
+				getBlockRootClientId,
+				getMultiSelectedBlockClientIds,
+				getBlockName,
+				getSettings,
+				canInsertBlockType,
+			} = select( blockEditorStore );
 
-				return {
-					imageEditing: settings.imageEditing,
-					imageSizes: settings.imageSizes,
-					maxWidth: settings.maxWidth,
-					mediaUpload: settings.mediaUpload,
-					canInsertCover: canInsertBlockType(
-						'core/cover',
-						rootClientId
+			const rootClientId = getBlockRootClientId( clientId );
+			const settings = getSettings();
+			const multiSelectedClientIds = getMultiSelectedBlockClientIds();
+
+			return {
+				imageEditing: settings.imageEditing,
+				imageSizes: settings.imageSizes,
+				maxWidth: settings.maxWidth,
+				mediaUpload: settings.mediaUpload,
+				canInsertCover: canInsertBlockType(
+					'core/cover',
+					rootClientId
+				),
+				multiImageSelection:
+					multiSelectedClientIds.length &&
+					multiSelectedClientIds.every(
+						( _clientId ) =>
+							getBlockName( _clientId ) === 'core/image'
 					),
-				};
-			},
-			[ clientId ]
-		);
+			};
+		},
+		[ clientId ]
+	);
 
 	const { replaceBlocks, toggleSelection } = useDispatch( blockEditorStore );
 	const { createErrorNotice, createSuccessNotice } =
@@ -741,7 +756,9 @@ export default function Image( {
 				isSelected={ isSingleSelected }
 				insertBlocksAfter={ insertBlocksAfter }
 				label={ __( 'Image caption text' ) }
-				showToolbarButton={ hasNonContentControls }
+				showToolbarButton={
+					! multiImageSelection && hasNonContentControls
+				}
 			/>
 		</>
 	);
