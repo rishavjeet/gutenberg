@@ -10,7 +10,7 @@ import {
 	privateApis as componentsPrivateApis,
 	CheckboxControl,
 } from '@wordpress/components';
-import { Children, Fragment } from '@wordpress/element';
+import { Children, Fragment, useMemo } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -373,6 +373,9 @@ function ViewTable( {
 	onSelectionChange,
 	labels,
 } ) {
+	const hasBulkActions = useMemo( () => {
+		return actions?.some( ( action ) => action.supportsBulk );
+	}, [ actions ] );
 	const visibleFields = fields.filter(
 		( field ) =>
 			! view.hiddenFields.includes( field.id ) &&
@@ -398,7 +401,7 @@ function ViewTable( {
 				<table className="dataviews-table-view">
 					<thead>
 						<tr>
-							{ !! selection && (
+							{ !! selection && hasBulkActions && (
 								<th
 									style={ {
 										width: 20,
@@ -446,7 +449,7 @@ function ViewTable( {
 					<tbody>
 						{ usedData.map( ( item, index ) => (
 							<tr key={ getItemId( item ) || index }>
-								{ !! selection && (
+								{ !! selection && hasBulkActions && (
 									<td
 										style={ {
 											width: 20,
