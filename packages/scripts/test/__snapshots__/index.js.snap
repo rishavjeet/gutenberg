@@ -19,6 +19,9 @@ exports[`should leave webpack.config.js untouched 1`] = `
   },
   "devtool": "source-map",
   "entry": [Function],
+  "experiments": {
+    "outputModule": true,
+  },
   "mode": "development",
   "module": {
     "rules": [
@@ -249,12 +252,10 @@ exports[`should leave webpack.config.js untouched 1`] = `
     },
     CleanWebpackPlugin {
       "apply": [Function],
-      "cleanAfterEveryBuildPatterns": [
+      "cleanAfterEveryBuildPatterns": [],
+      "cleanOnceBeforeBuildPatterns": [
         "!fonts/**",
         "!images/**",
-      ],
-      "cleanOnceBeforeBuildPatterns": [
-        "**/*",
       ],
       "cleanStaleWebpackAssets": false,
       "currentAssets": [],
@@ -303,10 +304,6 @@ exports[`should leave webpack.config.js untouched 1`] = `
     },
     DependencyExtractionWebpackPlugin {
       "externalizedDeps": Set {},
-      "externalsPlugin": ExternalsPlugin {
-        "externals": [Function],
-        "type": "window",
-      },
       "options": {
         "combineAssets": false,
         "combinedOutputFile": null,
@@ -316,6 +313,7 @@ exports[`should leave webpack.config.js untouched 1`] = `
         "outputFormat": "php",
         "useDefaults": true,
       },
+      "useModules": false,
     },
   ],
   "resolve": {
