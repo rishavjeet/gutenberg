@@ -6,7 +6,9 @@ export default function convertEditorSettings( data ) {
 	let newData = data;
 	const settingsToMoveToCore = [
 		'allowRightClickOverrides',
+		'inactivePanels',
 		'keepCaretInsideBlock',
+		'openPanels',
 		'showBlockBreadcrumbs',
 		'showIconLabels',
 		'showListViewByDefault',
