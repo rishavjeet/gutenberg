@@ -96,7 +96,6 @@ export function useSpecificEditorSettings() {
 		templateSlug,
 		focusMode,
 		isDistractionFree,
-		hasFixedToolbar,
 		canvasMode,
 		settings,
 		postWithTemplate,
@@ -126,9 +125,6 @@ export function useSpecificEditorSettings() {
 					'core/edit-site',
 					'distractionFree'
 				),
-				hasFixedToolbar:
-					!! getPreference( 'core/edit-site', 'fixedToolbar' ) ||
-					! isLargeViewport,
 				canvasMode: getCanvasMode(),
 				settings: getSettings(),
 				postWithTemplate: _context?.postId,
@@ -146,7 +142,6 @@ export function useSpecificEditorSettings() {
 			supportsTemplateMode: true,
 			focusMode: canvasMode === 'view' && focusMode ? false : focusMode,
 			isDistractionFree,
-			hasFixedToolbar,
 			defaultRenderingMode,
 			getPostLinkProps,
 			// I wonder if they should be set in the post editor too
@@ -158,7 +153,6 @@ export function useSpecificEditorSettings() {
 		canvasMode,
 		focusMode,
 		isDistractionFree,
-		hasFixedToolbar,
 		defaultRenderingMode,
 		getPostLinkProps,
 		archiveLabels.archiveTypeLabel,

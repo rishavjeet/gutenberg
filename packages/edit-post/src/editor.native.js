@@ -47,17 +47,10 @@ class Editor extends Component {
 		this.setTitleRef = this.setTitleRef.bind( this );
 	}
 
-	getEditorSettings(
-		settings,
-		hasFixedToolbar,
-		focusMode,
-		hiddenBlockTypes,
-		blockTypes
-	) {
+	getEditorSettings( settings, focusMode, hiddenBlockTypes, blockTypes ) {
 		settings = {
 			...settings,
 			isRTL: I18nManager.isRTL,
-			hasFixedToolbar,
 			focusMode,
 		};
 
@@ -134,7 +127,6 @@ class Editor extends Component {
 	render() {
 		const {
 			settings,
-			hasFixedToolbar,
 			focusMode,
 			initialEdits,
 			hiddenBlockTypes,
@@ -149,7 +141,6 @@ class Editor extends Component {
 
 		const editorSettings = this.getEditorSettings(
 			settings,
-			hasFixedToolbar,
 			focusMode,
 			hiddenBlockTypes,
 			blockTypes
@@ -197,7 +188,6 @@ export default compose( [
 		const { getBlockTypes } = select( blocksStore );
 
 		return {
-			hasFixedToolbar: isFeatureActive( 'fixedToolbar' ),
 			focusMode: isFeatureActive( 'focusMode' ),
 			mode: getEditorMode(),
 			hiddenBlockTypes: getHiddenBlockTypes(),

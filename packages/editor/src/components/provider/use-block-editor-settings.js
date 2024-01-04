@@ -51,7 +51,6 @@ const BLOCK_EDITOR_SETTINGS = [
 	'fontSizes',
 	'gradients',
 	'generateAnchors',
-	'hasFixedToolbar',
 	'hasInlineToolbar',
 	'isDistractionFree',
 	'imageDefaultSize',
@@ -90,6 +89,7 @@ const BLOCK_EDITOR_SETTINGS = [
 function useBlockEditorSettings( settings, postType, postId ) {
 	const {
 		allowRightClickOverrides,
+		hasFixedToolbar,
 		keepCaretInsideBlock,
 		reusableBlocks,
 		hasUploadPermissions,
@@ -131,6 +131,7 @@ function useBlockEditorSettings( settings, postType, postId ) {
 					postType,
 					postId
 				)?._links?.hasOwnProperty( 'wp:action-unfiltered-html' ),
+				hasFixedToolbar: get( 'core', 'fixedToolbar' ),
 				keepCaretInsideBlock: get( 'core', 'keepCaretInsideBlock' ),
 				reusableBlocks: isWeb
 					? getEntityRecords( 'postType', 'wp_block', {
@@ -222,6 +223,7 @@ function useBlockEditorSettings( settings, postType, postId ) {
 				)
 			),
 			allowRightClickOverrides,
+			hasFixedToolbar,
 			keepCaretInsideBlock,
 			mediaUpload: hasUploadPermissions ? mediaUpload : undefined,
 			__experimentalReusableBlocks: reusableBlocks,
@@ -257,6 +259,7 @@ function useBlockEditorSettings( settings, postType, postId ) {
 		} ),
 		[
 			allowRightClickOverrides,
+			hasFixedToolbar,
 			keepCaretInsideBlock,
 			settings,
 			hasUploadPermissions,
