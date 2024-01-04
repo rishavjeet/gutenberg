@@ -42,6 +42,12 @@ describe( 'convertPreferencesPackageData', () => {
 		expect( convertPreferencesPackageData( input ) )
 			.toMatchInlineSnapshot( `
 		{
+		  "core": {
+		    "inactivePanels": [],
+		    "openPanels": [
+		      "post-status",
+		    ],
+		  },
 		  "core/customize-widgets": {
 		    "fixedToolbar": true,
 		    "welcomeGuide": false,
@@ -53,10 +59,6 @@ describe( 'convertPreferencesPackageData', () => {
 		    "hiddenBlockTypes": [
 		      "core/audio",
 		      "core/cover",
-		    ],
-		    "inactivePanels": [],
-		    "openPanels": [
-		      "post-status",
 		    ],
 		    "pinnedItems": {
 		      "my-sidebar-plugin/title-sidebar": false,
